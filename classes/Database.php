@@ -4,13 +4,14 @@ class Database {
     private $host = DB_HOST;
     private $user = DB_USER;
     private $pass = DB_PASS;
-    private $dbnme = DB_NAME;
+    private $dbname = DB_NAME;
 
     private $dbh;
     private $error;
     private $sth;
 
     public function __construct(){
+        
         $dsn ='mysql:host='. $this->host .';dbname='. $this->dbname;
 
         $options = array(
@@ -21,6 +22,7 @@ class Database {
         try {
             $this->dbh = new PDO($dsn, $this->user, $this->pass, $options);
         } catch (PDOException $e) {
+
             $this->error = $e->getMessage();
         }
     }
@@ -32,7 +34,7 @@ class Database {
     public function bind($params, $value, $type=null) {
         if(is_null($type)) {
             switch(true) {
-                case is_init($value):
+                case is_int($value):
                     $type = PDO::PARAM_INIT;
                     break;
                 case is_bool($value):
@@ -45,7 +47,7 @@ class Database {
                     $type = PDO::PARAM_STR;
             }
         }
-        $this->sth->bindValue($param, $value, $type);        
+        $this->sth->bindValue($params, $value, $type);        
     }
 
     public function execute(){

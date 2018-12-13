@@ -8,13 +8,13 @@ class User {
     }
 
     public function register($data){
-        $sql = 'INSERT INTO user (name, email, phone_no, password, user_type, gender, image_url, created_at, updated_at) VALUES (:name, :email, :phone_no, :password, :user_type, :gender, :image_url, :created_at, :updated_at)';
+        $sql = 'INSERT INTO user (name, email, phone_number, password, user_type, gender, image_url, created_at, updated_at) VALUES (:name, :email, :phone_number, :password, :user_type, :gender, :image_url, :created_at, :updated_at)';
 
         $this->db->query($sql);
         
         $this->db->bind(':name', $data['name']);
         $this->db->bind(':email', $data['email']);
-        $this->db->bind(':phone_no', $data['phone_no']);
+        $this->db->bind(':phone_number', $data['phone_number']);
         $this->db->bind(':password', $data['password']);
         $this->db->bind(':user_type', $data['user_type']);
         $this->db->bind(':gender', $data['gender']);

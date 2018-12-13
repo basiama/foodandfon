@@ -2,33 +2,62 @@
 <div class="wrap_menu p-l-45 p-l-0-xl">
 						<nav class="menu">
 							<ul class="main_menu">
+                                <?php if(!isLoggedIn()) : ?>
 								<li>
-									<a href="index.html">Home</a>
+									<a href="index">Home</a>
 								</li>
 
 								<li>
-									<a href="menu.html">Sign up</a>
-								</li>
-
-								<li>
-									<a href="reservation.html">Reservation</a>
-								</li>
-
-								<li>
-									<a href="gallery.html">Signin</a>
-								</li>
-
-								<li>
+									<a href="signup">Sign up</a>
+                                </li>
+                                
+                                <li>
+									<a href="signin">Sign in</a>
+                                </li>
+                                
+                                <li>
 									<a href="about.html">About</a>
+                                </li>
+                                
+                                <?php elseif(isLoggedIn() && getUserType()=='user') : ?>
+                                
+                                <li>
+									<a href="reservation.html">Profile</a>
 								</li>
 
-								<li>
-									<a href="blog.html">Blog</a>
+                                <li>
+									<a href="reservation.html">Restuarants</a>
 								</li>
 
+
 								<li>
-									<a href="contact.html">Contact</a>
+									<a href="reservation.html">My Reservation</a>
 								</li>
+
+
+								<li>
+									<a href="logout">Logout</a>
+								</li>
+                                <?php elseif(isLoggedIn() && getUserType()=='owner') : ?>
+
+								 <li>
+									<a href="reservation.html">Profile</a>
+								</li>
+
+                                <li>
+									<a href="reservation.html">My Restuarants</a>
+								</li>
+
+
+								<li>
+									<a href="reservation.html">Reservations</a>
+								</li>
+
+
+								<li>
+									<a href="logout">Logout</a>
+                                </li>
+                            <?php endif;?>
 							</ul>
 						</nav>
 					</div>
